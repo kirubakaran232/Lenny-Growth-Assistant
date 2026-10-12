@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lenny Growth Assistant</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<a class="skip" href="#composer-input">Skip to message box</a>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Conversations">
+    <button class="btn primary block" id="new-chat" type="button">+ New chat</button>
+    <nav aria-label="Chat history"><ul class="sessions" id="sessions"></ul></nav>
+    <p class="muted small" id="kb-status">Loading knowledge base…</p>
+  </aside>
+
+  <main class="chat" aria-label="Chat">
+    <header class="topbar">
+      <button class="btn icon" id="toggle-sidebar" type="button" aria-label="Toggle conversation list" aria-expanded="false">☰</button>
+      <h1>Lenny Growth Assistant</h1>
+      <div class="provider">
+        <label for="provider">Model</label>
+        <select id="provider" aria-describedby="provider-note"></select>
+        <span id="provider-dot" class="dot" aria-hidden="true"></span>
+      </div>
+    </header>
+    <p class="provider-note small muted" id="provider-note" role="status"></p>
+
+    <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
+
+    <div class="alert" id="alert" role="alert" hidden></div>
+    <div class="status" id="status" role="status" hidden><span class="spinner" aria-hidden="true"></span><span id="status-text"></span></div>
+
+    <div class="composer">
+      <label class="sr-only" for="composer-input">Ask a product or growth question</label>
+      <textarea id="composer-input" rows="2" maxlength="4000" placeholder="Ask about growth, activation, pricing, hiring…  (Enter to send, Shift+Enter for a new line)"></textarea>
+      <button class="btn primary" id="send" type="button">Send</button>
+    </div>
+  </main>
+
+  <section class="artifact" id="artifact" aria-label="Artifact viewer" hidden>
+    <header class="artifact-head">
+      <div class="artifact-title"><strong id="artifact-title">Artifact</strong><span class="badge" id="artifact-type"></span></div>
+      <div class="artifact-actions">
+        <div role="tablist" aria-label="Artifact view" class="tabs">
+          <button role="tab" id="tab-preview" aria-selected="true" aria-controls="panel-preview" type="button">Preview</button>
+          <button role="tab" id="tab-source" aria-selected="false" aria-controls="panel-source" tabindex="-1" type="button">Source</button>
+        </div>
+        <button class="btn" id="artifact-copy" type="button">Copy</button>
+        <button class="btn" id="artifact-download" type="button">Download</button>
+        <button class="btn" id="artifact-close" type="button" aria-label="Close artifact viewer">✕</button>
+      </div>
+    </header>
+    <p class="small muted sandbox-note">Rendered in an isolated sandbox: scripts, forms, external images/fonts and network requests are blocked.</p>
+    <div id="panel-preview" role="tabpanel" aria-labelledby="tab-preview">
+      <iframe id="artifact-frame" title="Artifact preview" sandbox="" referrerpolicy="no-referrer"></iframe>
+    </div>
+    <div id="panel-source" role="tabpanel" aria-labelledby="tab-source" hidden><pre id="artifact-source" tabindex="0"></pre></div>
+  </section>
+</div>
+<script src="/assets/app.js"></script>
+</body>
+</html>
